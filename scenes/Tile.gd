@@ -1,8 +1,14 @@
 extends StaticBody
 
 
-var active = false setget set_active
+const SELECT_ELEVATION = 0.5
 
+var active = false setget set_active
+var selected = false setget set_selected
+var buffered_selected = false
+var can_rotate = false
+
+onready var initial_z = translation.z
 onready var _tubes = $Tubes.get_children()
 
 
@@ -10,6 +16,11 @@ func _ready():
 	for tube in _tubes:
 		tube.connect("connected", self, "_on_Tube_connected", [tube])
 		tube.connect("disconnected", self, "_on_Tube_disconnected", [tube])
+
+
+func _input_event(_camera, event, _click_position, _click_normal, _shape_idx):
+	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
+		set_selected(!selected)
 
 
 func set_active(value: bool):
@@ -22,9 +33,30 @@ func set_active(value: bool):
 		tube.active = active
 
 
-func _on_Tube_connected(tube):
+func set_selected(value: bool):
+	if buffered_selected == value:
+		return
+	
+	buffered_selected = value
+	can_rotate = false
+	
+	if $Tween.is_active():
+		yield($Tween, "tween_completed")
+	
+	selected = value
+	
+	var to = initial_z + selected * SELECT_ELEVATION
+	$Tween.interpolate_property(self, "translation:z", null, to, 0.4)
+	$Tween.start()
+	
+	yield($Tween, "tween_completed")
+	
+	can_rotate = selected
+
+
+func _on_Tube_connected(_tube):
 	set_active(true)
 
 
-func _on_Tube_disconnected(tube):
+func _on_Tube_disconnected(_tube):
 	set_active(false)
