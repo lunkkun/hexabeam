@@ -1,5 +1,8 @@
+tool
 extends StaticBody
 
+
+const EMISSION_COLOR = Color("1bd037")
 
 signal connected
 signal disconnected
@@ -30,14 +33,20 @@ func set_active(value: bool):
 	
 	active = value
 	
-	$MeshInstance.mesh.material.emission_enabled = active
-	$MeshInstance2.mesh.material.emission_enabled = active
-	
-	$ConnectingArea.monitorable = active and not connected
+	var material = $MeshInstance.mesh.material
+	material.emission = EMISSION_COLOR
+	material.emission_enabled = active
 	
 	print("tube activated" if active else "tube deactivated")
 
 
 func check_connected():
-	var conn = $ConnectingArea.get_overlapping_areas().size() > 0
+	var overlapping = $ConnectingArea.get_overlapping_areas()
+	
+	var conn = false
+	if overlapping.size() > 0:
+		var tube = overlapping[0].get_parent()
+		if tube.active and not tube.connected:
+			conn = true
+		
 	set_connected(conn)
