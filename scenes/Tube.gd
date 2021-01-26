@@ -3,6 +3,7 @@ extends StaticBody
 
 
 const EMISSION_COLOR = Color("1bd037")
+const EMISSION_ENERGY = 0.75
 
 signal connected
 signal disconnected
@@ -35,6 +36,7 @@ func set_active(value: bool):
 	
 	var material = $MeshInstance.mesh.material
 	material.emission = EMISSION_COLOR
+	material.emission_energy = EMISSION_ENERGY
 	material.emission_enabled = active
 	
 	print("tube activated" if active else "tube deactivated")
