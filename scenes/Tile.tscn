@@ -37,4 +37,3 @@ material/0 = null
 
 [node name="Tube2" parent="Tubes" instance=ExtResource( 1 )]
 transform = Transform( 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, 0, 0, 0 )
-[connection signal="input_event" from="." to="." method="_on_Tile_input_event"]

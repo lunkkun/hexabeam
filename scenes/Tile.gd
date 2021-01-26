@@ -1,7 +1,11 @@
+tool
 extends StaticBody
 
 
 const SELECT_ELEVATION = 0.5
+
+export(int, 1, 2) var layout = 1 setget set_layout
+export(int, 0, 5) var orientation setget set_orientation
 
 var active = false setget set_active
 var selected = false setget set_selected
@@ -21,6 +25,18 @@ func _ready():
 func _input_event(_camera, event, _click_position, _click_normal, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
 		set_selected(!selected)
+
+
+func set_layout(value: int):
+	layout = value
+	
+	$Tubes.get_child(1).rotation_degrees.z = -60 * layout
+
+
+func set_orientation(value: int):
+	orientation = value
+	
+	rotation_degrees.z = -60 * orientation
 
 
 func set_active(value: bool):
