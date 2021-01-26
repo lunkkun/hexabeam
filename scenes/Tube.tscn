@@ -2,18 +2,17 @@
 
 [ext_resource path="res://scenes/Tube.gd" type="Script" id=1]
 
-
 [sub_resource type="CylinderShape" id=1]
 radius = 0.1
 height = 0.5
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=2]
 resource_local_to_scene = true
 albedo_color = Color( 0.247059, 0.588235, 0.317647, 1 )
 
-[sub_resource type="CylinderMesh" id=2]
+[sub_resource type="CylinderMesh" id=3]
 resource_local_to_scene = true
-material = SubResource( 3 )
+material = SubResource( 2 )
 top_radius = 0.1
 bottom_radius = 0.1
 height = 0.5
@@ -23,7 +22,7 @@ radius = 0.1
 
 [sub_resource type="SphereMesh" id=5]
 resource_local_to_scene = true
-material = SubResource( 3 )
+material = SubResource( 2 )
 radius = 0.1
 height = 0.2
 
@@ -40,7 +39,7 @@ shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, -0.25, 0, 0 )
-mesh = SubResource( 2 )
+mesh = SubResource( 3 )
 material/0 = null
 
 [node name="CollisionShape2" type="CollisionShape" parent="."]

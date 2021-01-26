@@ -8,6 +8,10 @@ var connected = false setget set_connected
 var active = false setget set_active
 
 
+func _physics_process(delta):
+	check_connected()
+
+
 func set_connected(value: bool):
 	if connected == value:
 		return

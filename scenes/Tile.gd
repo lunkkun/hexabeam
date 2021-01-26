@@ -12,11 +12,6 @@ func _ready():
 		tube.connect("disconnected", self, "_on_Tube_disconnected", [tube])
 
 
-func _process(_delta):
-	for tube in _tubes:
-		tube.check_connected()
-
-
 func set_active(value: bool):
 	if active == value:
 		return
