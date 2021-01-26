@@ -10,5 +10,6 @@ fov = 60.0
 
 [node name="SpotLight" type="SpotLight" parent="Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.43051e-05 )
+light_energy = 2.0
 
 [node name="Level" parent="." instance=ExtResource( 1 )]
