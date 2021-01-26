@@ -33,11 +33,11 @@ func set_active(value: bool):
 	$MeshInstance.mesh.material.emission_enabled = active
 	$MeshInstance2.mesh.material.emission_enabled = active
 	
-	$Area.monitorable = active and not connected
+	$ConnectingArea.monitorable = active and not connected
 	
 	print("tube activated" if active else "tube deactivated")
 
 
 func check_connected():
-	var conn = $Area.get_overlapping_areas().size() > 0
+	var conn = $ConnectingArea.get_overlapping_areas().size() > 0
 	set_connected(conn)
