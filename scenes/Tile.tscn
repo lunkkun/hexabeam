@@ -8,6 +8,9 @@ points = PoolVector3Array( 0, 0.55, -0.1, 0, 0.55, 0.1, -0.48, 0.275, -0.1, -0.4
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0, 0.266667, 0.639216, 1 )
+rim_enabled = true
+rim = 0.04
+rim_tint = 0.7
 
 [sub_resource type="CylinderMesh" id=3]
 material = SubResource( 2 )
