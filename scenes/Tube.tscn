@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/Tube.gd" type="Script" id=1]
+
+
+[sub_resource type="CylinderShape" id=1]
+radius = 0.1
+height = 0.5
+
+[sub_resource type="SpatialMaterial" id=3]
+resource_local_to_scene = true
+albedo_color = Color( 0.247059, 0.588235, 0.317647, 1 )
+
+[sub_resource type="CylinderMesh" id=2]
+resource_local_to_scene = true
+material = SubResource( 3 )
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.5
+
+[sub_resource type="SphereShape" id=4]
+radius = 0.1
+
+[sub_resource type="SphereMesh" id=5]
+resource_local_to_scene = true
+material = SubResource( 3 )
+radius = 0.1
+height = 0.2
+
+[sub_resource type="BoxShape" id=6]
+margin = 0.01
+extents = Vector3( 0.025, 0.025, 0.025 )
+
+[node name="Tube" type="StaticBody"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, -0.25, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, -0.25, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+shape = SubResource( 4 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0 )
+input_ray_pickable = false
+monitorable = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 6 )
