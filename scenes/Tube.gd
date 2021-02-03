@@ -2,14 +2,22 @@ tool
 extends StaticBody
 
 
-const EMISSION_COLOR = Color("1bd037")
-const EMISSION_ENERGY = 0.75
-
 signal connected
 signal disconnected
 
+const EMISSION_COLOR = Color("1bd037")
+const EMISSION_ENERGY = 0.75
+
+export var has_joint = false setget set_has_joint
+
+var ready = false
 var connected = false setget set_connected
 var active = false setget set_active
+
+
+func _ready():
+	ready = true
+	set_has_joint(has_joint)
 
 
 func _physics_process(_delta):
@@ -34,12 +42,20 @@ func set_active(value: bool):
 	
 	active = value
 	
-	var material = $MeshInstance.mesh.material
+	var material = $MeshInstanceTube.mesh.material
 	material.emission = EMISSION_COLOR
 	material.emission_energy = EMISSION_ENERGY
 	material.emission_enabled = active
 	
 	print("tube activated" if active else "tube deactivated")
+
+
+func set_has_joint(value):
+	has_joint = value
+	
+	if ready:
+		$CollisionShapeJoint.disabled = not has_joint
+		$MeshInstanceJoint.visible = has_joint
 
 
 func check_connected():

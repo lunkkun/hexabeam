@@ -40,19 +40,21 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="CollisionShapeTube" type="CollisionShape" parent="."]
 transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, -0.25, 0, 0 )
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="MeshInstanceTube" type="MeshInstance" parent="."]
 transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, -0.25, 0, 0 )
 mesh = SubResource( 3 )
 material/0 = null
 
-[node name="CollisionShape2" type="CollisionShape" parent="."]
+[node name="CollisionShapeJoint" type="CollisionShape" parent="."]
 shape = SubResource( 4 )
+disabled = true
 
-[node name="MeshInstance2" type="MeshInstance" parent="."]
+[node name="MeshInstanceJoint" type="MeshInstance" parent="."]
+visible = false
 mesh = SubResource( 5 )
 material/0 = null
 
