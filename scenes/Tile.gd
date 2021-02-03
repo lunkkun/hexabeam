@@ -11,7 +11,7 @@ const ROTATE_LEFT = 60
 const ROTATE_RIGHT = -60
 const ROTATE_TIME = 0.2
 
-export(int, 1, 2) var layout = 1 setget set_layout
+export(int, 1, 3) var layout = 1 setget set_layout
 export(int, 0, 5) var orientation setget set_orientation # initial
 
 var active = false setget set_active
