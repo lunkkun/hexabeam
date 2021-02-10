@@ -117,6 +117,15 @@ func tween_rotate(degrees):
 	input_buffering = false
 
 
+func transition_in(transition_time, transition_z, transition_deg_z):
+	var z_to = translation.z + transition_z
+	var deg_z_to = rotation_degrees.z + transition_deg_z
+	
+	$Tween.interpolate_property(self, "translation:z", null, z_to, transition_time)
+	$Tween.interpolate_property(self, "rotation_degrees:z", null, deg_z_to, transition_time)
+	$Tween.start()
+
+
 func _on_Tube_connected(_tube):
 	set_active(true)
 
