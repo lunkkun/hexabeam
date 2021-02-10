@@ -7,11 +7,11 @@ script/source = "extends Spatial
 
 
 func _ready():
-	$Level.transition_in(1.0, -8)
+	$Level.transition_in(1.2, -8)
 
 
 func _on_Level_completed():
-	$Level.transition_out(1.0, -8)
+	$Level.transition_out(1.2, -8)
 "
 
 [node name="TestChamber" type="Spatial"]
