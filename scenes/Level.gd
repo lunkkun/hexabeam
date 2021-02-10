@@ -3,7 +3,7 @@ extends Spatial
 
 signal completed
 
-const TRANSITION_Z = 10
+const TRANSITION_Z = 5
 const TRANSITION_DEG_Z = 180
 
 var tile_transition_time: float
@@ -33,7 +33,8 @@ func _transition_x(transition_time, transition_x):
 		tile.input_ray_pickable = false
 		
 	var to_x = translation.x + transition_x
-	$TransitionTween.interpolate_property(self, "translation:x", null, to_x, transition_time)
+	$TransitionTween.interpolate_property(self, "translation:x", null, to_x, transition_time,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$TransitionTween.start()
 
 
